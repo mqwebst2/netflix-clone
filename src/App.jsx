@@ -25,7 +25,6 @@ function App() {
   return (
     <div className='App'>
       <header>My Movies App</header>
-      <p>e2e19760</p>
       <Form onSubmit={handleSubmit} />
       <div className='searchResult'>{movies && movieCards}</div>
     </div>
