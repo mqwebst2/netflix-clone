@@ -1,18 +1,35 @@
-import React from 'react';
+import { useState } from 'react';
 
 let Form = (props) => {
+  const [values, setValues] = useState({
+    apiKey: '',
+    title: '',
+  });
+  let handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className='Form'>
       <h1>Search for your favorite movie</h1>
-      <form onSubmit={props.onSubmit}>
+      <form
+        onSubmit={(evt) => {
+          props.onSubmit(evt, values.apiKey, values.title);
+          setValues((prevValues) => ({ ...prevValues, title: '' }));
+        }}
+      >
         <label htmlFor='apiKey'>
           API Key:{' '}
           <input
             type='text'
             placeholder='Api Key'
             name='apiKey'
-            value={props.apiKey}
-            onChange={props.onChange}
+            value={values.apiKey}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor='title'>
@@ -21,8 +38,8 @@ let Form = (props) => {
             type='text'
             placeholder='Movie Title'
             name='title'
-            value={props.title}
-            onChange={props.onChange}
+            value={values.title}
+            onChange={handleChange}
           />
         </label>
         <input

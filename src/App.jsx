@@ -6,45 +6,27 @@ import MovieCard from './components/js/MovieCard';
 // API Key = e2e19760
 
 function App() {
-  const [currMovie, setCurrMovie] = useState(null);
+  const [movies, setMovies] = useState([]);
 
-  const [values, setValues] = useState({
-    apiKey: '',
-    title: '',
-  });
-  let handleChange = (event) => {
-    const { name, value } = event.target;
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
   let handleSubmit = (event, key, title) => {
     event.preventDefault();
     let urlTitle = title.replaceAll(' ', '+');
-    fetch(`https://www.omdbapi.com/?apikey=${key}&t=${urlTitle}`)
+    fetch(`https://www.omdbapi.com/?apikey=${key}&s=${urlTitle}`)
       .then((resp) => resp.json())
       .then((data) => {
-        setCurrMovie(data);
+        setMovies(data.Search);
       });
-    setValues((prevValues) => ({
-      ...prevValues,
-      title: '',
-    }));
   };
+
+  let movieCards = movies.map((movie) => {
+    return <MovieCard key={movie.imdbID} {...movie} />;
+  });
 
   return (
     <div className='App'>
       <header>My Movies App</header>
-      <p>e2e19760</p>
-      <Form
-        {...values}
-        onChange={handleChange}
-        onSubmit={(e) => handleSubmit(e, values.apiKey, values.title)}
-      />
-      <div className='searchResult'>
-        {currMovie && <MovieCard {...currMovie} />}
-      </div>
+      <Form onSubmit={handleSubmit} />
+      <div className='searchResult'>{movies && movieCards}</div>
     </div>
   );
 }
