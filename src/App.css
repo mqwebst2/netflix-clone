@@ -1,0 +1,58 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  background-color: #bbb;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px;
+  background-color: #1670ba;
+  color: #fff;
+}
+form {
+  display: flex;
+  gap: 40px;
+}
+label {
+  font-size: 1.2rem;
+}
+input {
+  width: 200px;
+  height: 32px;
+  padding: 2px 8px;
+  border: none;
+  border-bottom: solid 2px #bbb;
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: #fff;
+}
+input:focus {
+  outline: none;
+  border-bottom: solid 2px #fff;
+}
+.form-btn {
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #1670ba;
+  cursor: pointer;
+}
+.form-btn:hover {
+  background-color: #bbb;
+}
+.form-btn:focus {
+  outline: none;
+  border: none;
+}
+
+.searchResult {
+  padding: 40px;
+}

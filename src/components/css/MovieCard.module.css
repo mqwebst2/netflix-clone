@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 400px;
+  padding: 24px 36px;
+  border-radius: 6px;
+  background-color: #bbb;
+  color: #222;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.poster {
+  width: 120px;
+  border-radius: 4px;
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.movie > h2 {
+  font-size: 1.4rem;
+  letter-spacing: -0.08rem;
+}
+.movie > span {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.plot {
+  line-height: 1.6em;
+  text-align: justify;
+}
