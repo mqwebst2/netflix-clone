@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+  padding: 40px;
+  background-color: #bbb;
+}
+header > button {
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1670ba;
+  color: #fff;
+  cursor: pointer;
+}

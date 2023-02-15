@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../css/Form.module.css';
 
 let Form = (props) => {
   const [values, setValues] = useState({
@@ -14,7 +15,7 @@ let Form = (props) => {
   };
 
   return (
-    <div className='Form'>
+    <div className={styles.Form}>
       <h1>Search for your favorite movie</h1>
       <form
         onSubmit={(evt) => {
@@ -46,7 +47,7 @@ let Form = (props) => {
           type='submit'
           name='submit'
           value='Search'
-          className='form-btn'
+          className={styles.formBtn}
         />
       </form>
     </div>

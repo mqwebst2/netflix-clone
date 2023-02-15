@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/js/Header';
 import Form from './components/js/Form';
 import MovieCard from './components/js/MovieCard';
 
@@ -7,6 +8,7 @@ import MovieCard from './components/js/MovieCard';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
   let handleSubmit = (event, key, title) => {
     event.preventDefault();
@@ -18,15 +20,37 @@ function App() {
       });
   };
 
+  let addToWatchlist = (item) => {
+    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
+  };
+
   let movieCards = movies.map((movie) => {
-    return <MovieCard key={movie.imdbID} {...movie} />;
+    return (
+      <MovieCard
+        key={movie.imdbID}
+        {...movie}
+        addMovie={() => addToWatchlist(movie)}
+      />
+    );
   });
 
   return (
     <div className='App'>
-      <header>My Movies App</header>
-      <Form onSubmit={handleSubmit} />
-      <div className='searchResult'>{movies && movieCards}</div>
+      <Header />
+      <div className='main'>
+        <Form onSubmit={handleSubmit} />
+        <div className='searchResult'>
+          {movies.length ? (
+            movieCards
+          ) : (
+            <span>Search for a movie or show you want to watch!</span>
+          )}
+        </div>
+        <div className='watchlist'>
+          <h1>My Watchlist</h1>
+          <ul></ul>
+        </div>
+      </div>
     </div>
   );
 }

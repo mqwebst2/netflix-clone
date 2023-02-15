@@ -64,6 +64,7 @@ let MovieCard = (props) => {
           <div className={styles.cardContent}>
             <h2>{props.Title}</h2>
             <span>{props.Year}</span>
+            <button onClick={props.addMovie}>Add to Watchlist</button>
           </div>
         </div>
       </div>
