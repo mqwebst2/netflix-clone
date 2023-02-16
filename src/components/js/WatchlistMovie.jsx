@@ -4,8 +4,18 @@ import film from '/src/assets/film.svg';
 import trash from '/src/assets/trash.svg';
 
 let WatchlistMovie = (props) => {
+  console.log(props);
+  const [watched, setWatched] = useState(false);
+  let addtoWatched = () => setWatched(true);
+
   return (
-    <li className={styles.watchlistMovie}>
+    <li
+      className={
+        watched
+          ? `${styles.watchlistMovie} ${styles.watched}`
+          : styles.watchlistMovie
+      }
+    >
       <div className={styles.watchlistMovieInfo}>
         <div className={styles.watchlistMovieImage}>
           <img src={props.Poster} />
@@ -16,10 +26,12 @@ let WatchlistMovie = (props) => {
         </div>
       </div>
       <div className={styles.watchlistMovieInteractions}>
-        <button className={styles.watchlistWatched}>
-          <img src={film} />
-        </button>
-        <button className={styles.watchlistDelete}>
+        {!watched && (
+          <button className={styles.watchlistWatched} onClick={addtoWatched}>
+            <img src={film} />
+          </button>
+        )}
+        <button className={styles.watchlistDelete} onClick={props.del}>
           <img src={trash} />
         </button>
       </div>

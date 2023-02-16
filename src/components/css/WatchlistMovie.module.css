@@ -7,6 +7,9 @@
   border: solid 2px #1670ba;
   border-radius: 4px;
 }
+.watchlistMovie.watched {
+  border: solid 2px #00813a;
+}
 
 .watchlistMovieInfo {
   display: flex;

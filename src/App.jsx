@@ -32,8 +32,19 @@ function App() {
   let addToWatchlist = (item) => {
     setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
   };
+  let delFromWatchlist = (imdbID) => {
+    setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter((movie) => imdbID !== movie.imdbID)
+    );
+  };
   let movieList = watchlist.map((movie) => {
-    return <WatchlistMovie key={movie.imdbID} {...movie} />;
+    return (
+      <WatchlistMovie
+        key={movie.imdbID}
+        {...movie}
+        del={() => delFromWatchlist(movie.imdbID)}
+      />
+    );
   });
 
   return (
