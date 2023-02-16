@@ -3,13 +3,12 @@ import './App.css';
 import Header from './components/js/Header';
 import Form from './components/js/Form';
 import MovieCard from './components/js/MovieCard';
+import WatchlistMovie from './components/js/WatchlistMovie';
 
 // API Key = e2e19760
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
-
   let handleSubmit = (event, key, title) => {
     event.preventDefault();
     let urlTitle = title.replaceAll(' ', '+');
@@ -19,11 +18,6 @@ function App() {
         setMovies(data.Search);
       });
   };
-
-  let addToWatchlist = (item) => {
-    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
-  };
-
   let movieCards = movies.map((movie) => {
     return (
       <MovieCard
@@ -32,6 +26,14 @@ function App() {
         addMovie={() => addToWatchlist(movie)}
       />
     );
+  });
+
+  const [watchlist, setWatchlist] = useState([]);
+  let addToWatchlist = (item) => {
+    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
+  };
+  let movieList = watchlist.map((movie) => {
+    return <WatchlistMovie key={movie.imdbID} {...movie} />;
   });
 
   return (
@@ -48,7 +50,7 @@ function App() {
         </div>
         <div className='watchlist'>
           <h1>My Watchlist</h1>
-          <ul></ul>
+          <ul className='watchlist-movies'>{movieList}</ul>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@
   gap: 12px;
   width: 100%;
   height: 100%;
-  padding: 48px 20px 20px 20px;
+  padding: 48px 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -23,22 +23,10 @@
   transform: translateY(100%);
   transition: all 1600ms ease;
 }
-.card.clicked .cardInfo {
+.card:hover .cardInfo,
+.card:active .cardInfo,
+.card:focus .cardInfo {
   transform: translateY(0%);
-  animation: none;
-}
-
-.closeBtn {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  background-color: #1670ba;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .poster {
@@ -55,4 +43,29 @@
   height: 100%;
   padding: 12px;
   border: solid 4px #1670ba;
+}
+.cardContent button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1670ba;
+  color: #fff;
+  cursor: pointer;
+}
+.cardContent button:hover {
+  background-color: #fff;
+  color: #1670ba;
+}
+.cardContent img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1);
+}
+.cardContent button:hover img {
+  filter: invert(33%) sepia(34%) saturate(2470%) hue-rotate(181deg)
+    brightness(97%) contrast(91%);
 }
