@@ -6,7 +6,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 240px);
   justify-content: center;
-  gap: 4px;
+  column-gap: 4px;
+  row-gap: 20px;
   width: 100%;
   padding-block: 40px;
 }
