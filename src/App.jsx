@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/js/Header';
 import Form from './components/js/Form';
-import MovieCard from './components/js/MovieCard';
+import Card from './components/js/Card';
 import WatchlistMovie from './components/js/WatchlistMovie';
 
 // API Key = e2e19760
@@ -20,7 +20,7 @@ function App() {
   };
   let movieCards = movies.map((movie) => {
     return (
-      <MovieCard
+      <Card
         key={movie.imdbID}
         {...movie}
         addMovie={() => addToWatchlist(movie)}

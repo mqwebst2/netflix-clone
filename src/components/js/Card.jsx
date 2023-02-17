@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import styles from '../css/MovieCard.module.css';
+import styles from '../css/Card.module.css';
 import notebook from '/src/assets/notebook.svg';
 
-let MovieCard = (props) => {
+let Card = (props) => {
   return !props.Error ? (
     <>
       <div className={styles.card}>
@@ -26,4 +26,4 @@ let MovieCard = (props) => {
   );
 };
 
-export default MovieCard;
+export default Card;

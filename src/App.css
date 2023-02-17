@@ -1,11 +1,12 @@
 .main {
-  padding: 40px;
+  padding: 40px 4%;
 }
 
 .searchResult {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, 240px);
+  justify-content: center;
+  gap: 4px;
   width: 100%;
   padding-block: 40px;
 }
