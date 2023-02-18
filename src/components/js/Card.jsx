@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from '../css/Card.module.css';
-import notebook from '/src/assets/notebook.svg';
 
 let Card = (props) => {
   return !props.Error ? (
@@ -14,7 +13,7 @@ let Card = (props) => {
             <h2>{props.Title}</h2>
             <span>{props.Year}</span>
             <button onClick={props.addMovie}>
-              <img src={notebook} />
+              <img src='' />
               Add to watchlist
             </button>
           </div>

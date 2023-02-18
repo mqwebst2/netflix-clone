@@ -8,14 +8,14 @@
   color: #fff;
   border-radius: 8px;
 }
-form {
+.formSubmit {
   display: flex;
   gap: 40px;
 }
-label {
+.formLabel {
   font-size: 1.2rem;
 }
-input {
+.formInput {
   width: 200px;
   height: 32px;
   padding: 2px 8px;
@@ -25,7 +25,7 @@ input {
   background-color: transparent;
   color: #fff;
 }
-input:focus {
+.formInput:focus {
   outline: none;
   border-bottom: solid 2px #fff;
 }

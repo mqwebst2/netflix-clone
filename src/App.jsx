@@ -3,16 +3,15 @@ import './App.css';
 import Header from './components/js/Header';
 import Form from './components/js/Form';
 import Card from './components/js/Card';
-import WatchlistMovie from './components/js/WatchlistMovie';
 
-// API Key = e2e19760
+const apikey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [movies, setMovies] = useState([]);
-  let handleSubmit = (event, key, title) => {
+  let handleSubmit = (event, title) => {
     event.preventDefault();
     let urlTitle = title.replaceAll(' ', '+');
-    fetch(`https://www.omdbapi.com/?apikey=${key}&s=${urlTitle}`)
+    fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
       .then((resp) => resp.json())
       .then((data) => {
         setMovies(data.Search);
@@ -37,21 +36,11 @@ function App() {
       prevWatchlist.filter((movie) => imdbID !== movie.imdbID)
     );
   };
-  let movieList = watchlist.map((movie) => {
-    return (
-      <WatchlistMovie
-        key={movie.imdbID}
-        {...movie}
-        del={() => delFromWatchlist(movie.imdbID)}
-      />
-    );
-  });
 
   return (
     <div className='App'>
-      <Header />
+      <Header onSubmit={handleSubmit} />
       <div className='main'>
-        <Form onSubmit={handleSubmit} />
         <div className='searchResult'>
           {movies.length ? (
             movieCards
@@ -61,7 +50,6 @@ function App() {
         </div>
         <div className='watchlist'>
           <h1>My Watchlist</h1>
-          <ul className='watchlist-movies'>{movieList}</ul>
         </div>
       </div>
     </div>
