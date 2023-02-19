@@ -48,9 +48,6 @@ function App() {
             <span>Search for a movie or show you want to watch!</span>
           )}
         </div>
-        <div className='watchlist'>
-          <h1>My Watchlist</h1>
-        </div>
       </div>
     </div>
   );

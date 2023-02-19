@@ -4,6 +4,9 @@ header {
   justify-content: space-between;
   height: 72px;
   padding: 0 4%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background: linear-gradient(#060606, #141414);
 }
 header > h1 {
@@ -32,14 +35,18 @@ header > h1 {
 }
 
 .searchIcon {
-  filter: invert(1);
+  display: flex;
+  align-items: center;
   width: 18px;
   height: 18px;
-  transform: rotate(-15deg);
   cursor: pointer;
 }
 .headerSearchInner.toggled .searchIcon {
   cursor: default;
+}
+.searchIcon svg > g > path {
+  fill: #ffffff;
+  pointer-events: none;
 }
 
 .headerForm {
@@ -59,11 +66,14 @@ header > h1 {
 }
 
 .searchInputClear {
-  width: 12px;
-  height: 12px;
+  display: flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
-.searchInputClear > img {
+.searchInputClear > svg > g > path {
   width: 100%;
-  filter: invert(1);
+  fill: #ffffff;
+  pointer-events: none;
 }

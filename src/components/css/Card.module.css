@@ -1,72 +1,121 @@
 .card {
   display: flex;
-  flex-direction: column;
-  height: 160px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #bbb;
-  color: #222;
-}
-
-.cardInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 48px 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background-color: #bbb;
-  transform: translateY(100%);
-  transition: all 1600ms ease;
-}
-.card:hover .cardInfo,
-.card:active .cardInfo,
-.card:focus .cardInfo {
-  transform: translateY(0%);
-}
-
-.poster {
-  width: 100%;
-  min-height: 100%;
-  z-index: 0;
-  border-radius: 4px;
+  overflow: visible;
 }
 
 .cardContent {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 12px;
-  border: solid 4px #1670ba;
+  height: 160px;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #181818;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 4px;
 }
-.cardContent button {
+.cardContent.hover {
+  z-index: 2;
+  background-color: #181818;
+  animation: openCard 0.2s cubic-bezier(0, 0.8, 0.4, 1) forwards;
+  box-shadow: 0 0 12px #00000080;
+}
+@keyframes openCard {
+  0% {
+    width: 240px;
+    height: 160px;
+  }
+  100% {
+    min-width: 320px;
+    height: 400px;
+  }
+}
+
+.cardPoster {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+.cardContent.hover > .cardPoster {
+  height: 56%;
+}
+.poster {
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 14%;
+}
+
+.cardInfo {
+  width: 100%;
+  height: 44%;
+  position: relative;
+  padding: 20px;
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  position: absolute;
+  top: -60px;
+  left: 0;
+  padding-left: 16px;
+  background: radial-gradient(
+    circle at left bottom,
+    #18181830 0,
+    #00000004 40%
+  );
+}
+.cardTitle > h3 {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  font-size: x-large;
+}
+.cardInfoBtns {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.cardInfoBtns > button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 40px;
-  border: none;
-  border-radius: 4px;
-  background-color: #1670ba;
-  color: #fff;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  overflow: hidden;
+  border: solid 2px hsla(0, 0%, 100%, 0.5);
+  border-radius: 50%;
+  background-color: rgba(42, 42, 42, 0.6);
   cursor: pointer;
 }
-.cardContent button:hover {
-  background-color: #fff;
-  color: #1670ba;
+.cardInfoBtns > button:hover {
+  border: solid 2px #ffffff;
 }
-.cardContent img {
-  width: 28px;
-  height: 28px;
-  filter: invert(1);
+.cardInfoBtns > button svg > g > path,
+.cardInfoBtns > button svg > path {
+  fill: #ffffff;
 }
-.cardContent button:hover img {
-  filter: invert(33%) sepia(34%) saturate(2470%) hue-rotate(181deg)
-    brightness(97%) contrast(91%);
+.cardInfoBtns > button.playBtn {
+  background-color: rgba(255, 255, 255, 1);
+}
+.cardInfoBtns > button.playBtn:hover {
+  /* background-color: hsla(0, 0%, 100%, 0.5); */
+  background-color: #e6e6e6;
+}
+.cardInfoBtns > button.playBtn svg > path {
+  fill: #181818;
+}
+.watchlistBtn {
+  background-color: #ffffff;
+}
+.detailsBtn {
+  margin-left: auto;
 }

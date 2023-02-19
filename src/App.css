@@ -1,15 +1,24 @@
+body {
+  position: relative;
+  background-color: #141414;
+}
+
 .main {
   padding: 40px 4%;
 }
 
 .searchResult {
   display: grid;
+  grid-auto-rows: 160px;
   grid-template-columns: repeat(auto-fit, 240px);
+  /* grid-auto-flow: column; */
+  align-items: center;
   justify-content: center;
-  column-gap: 4px;
-  row-gap: 20px;
+  column-gap: 6px;
+  row-gap: 80px;
   width: 100%;
   padding-block: 40px;
+  position: relative;
 }
 .searchResult > span {
   display: flex;
@@ -27,4 +36,6 @@
   gap: 20px;
   width: 100%;
   padding-block: 40px;
+  position: relative;
+  background-color: red;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../css/Header.module.css';
-import searchIcon from '/src/assets/search.png';
-import closeIcon from '/src/assets/close.png';
+import { ReactComponent as Search } from '/src/assets/search.svg';
+import { ReactComponent as Close } from '/src/assets/close.svg';
 
 let Header = (props) => {
   const [value, setValue] = useState('');
@@ -37,11 +37,9 @@ let Header = (props) => {
               : styles.headerSearchInner
           }
         >
-          <img
-            src={searchIcon}
-            className={styles.searchIcon}
-            id='search-icon'
-          />
+          <div className={styles.searchIcon}>
+            <Search id='search-icon' />
+          </div>
           <form
             className={styles.headerForm}
             onSubmit={(evt) => props.onSubmit(evt, value)}
@@ -63,7 +61,7 @@ let Header = (props) => {
                     className={styles.searchInputClear}
                     onClick={handleClear}
                   >
-                    <img src={closeIcon} />
+                    <Close />
                   </div>
                 )}
               </>
