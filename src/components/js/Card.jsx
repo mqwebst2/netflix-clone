@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import styles from '../css/Card.module.css';
-import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
-import { ReactComponent as Play } from '/src/assets/play.svg';
-import { ReactComponent as Plus } from '/src/assets/plus.svg';
+import CardDetails from './CardDetails.jsx';
 
 let Card = (props) => {
   const [hover, setHover] = useState(false);
@@ -10,37 +8,16 @@ let Card = (props) => {
   return !props.Error ? (
     <>
       <div
-        className={hover ? `${styles.card} ${styles.hover}` : styles.card}
+        className={styles.card}
         onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onMouseLeave={(evt) => setHover(false)}
       >
-        <div
-          className={
-            hover ? `${styles.cardContent} ${styles.hover}` : styles.cardContent
-          }
-        >
+        <div className={styles.cardContent}>
           <div className={styles.cardPoster}>
             <img src={props.Poster} className={styles.poster} />
           </div>
-          {hover && (
-            <div className={styles.cardInfo}>
-              <div className={styles.cardTitle}>
-                <h3>{props.Title}</h3>
-              </div>
-              <div className={styles.cardInfoBtns}>
-                <button className={styles.playBtn}>
-                  <Play />
-                </button>
-                <button className={styles.watchlistBtn}>
-                  <Plus />
-                </button>
-                <button className={styles.detailsBtn}>
-                  <Arrow />
-                </button>
-              </div>
-            </div>
-          )}
         </div>
+        <CardDetails hover={hover} {...props} />
       </div>
     </>
   ) : (

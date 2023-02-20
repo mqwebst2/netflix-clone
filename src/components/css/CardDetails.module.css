@@ -1,0 +1,192 @@
+.cardDetails {
+  display: flex;
+  align-self: center;
+  width: 360px;
+  height: 360px;
+  position: absolute;
+  top: -80%;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 6px;
+  animation: openCardDetails 0.4s cubic-bezier(0, 0.8, 0.4, 1) forwards;
+  transform-origin: 50% 50%;
+  background-color: #181818;
+  color: #ffffff;
+  box-shadow: 0 0 8px 2px #00000080;
+}
+.cardDetails.fullDetails {
+  width: 60vw;
+  min-height: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  top: 4%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  overflow: auto;
+  animation: openCardDetails2 300ms cubic-bezier(0, 0.8, 0.4, 1) forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes openCardDetails {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes openCardDetails2 {
+  0% {
+    z-index: 3;
+  }
+  25% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.cardDetailsContent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cardDetails.fullDetails .cardDetailsContent {
+  height: 500vh;
+  overflow: scroll;
+}
+
+.cardDetailsClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: #181818;
+  cursor: pointer;
+}
+.cardDetailsClose > svg > g > path {
+  fill: #ffffff;
+}
+
+.cardDetailsPoster {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 52%;
+  max-height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+.cardDetails.fullDetails > .cardDetailsContent > .cardDetailsPoster {
+  height: 600px;
+}
+.cardDetailsImage {
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+
+.cardDetailsTitle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  padding-left: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: large;
+  background: radial-gradient(
+    circle at left bottom,
+    #18181830 0,
+    #00000008 40%
+  );
+}
+.cardDetailsTitle > h3 {
+  width: 60%;
+}
+
+.cardDetailsInfo {
+  padding: 16px;
+  position: relative;
+}
+
+.cardDetailsBtns {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.cardDetailsBtns > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: solid 2px #ffffff80;
+  background-color: #2a2a2a99;
+  cursor: pointer;
+}
+.cardDetailsBtns > button:hover {
+  border-color: #ffffff;
+}
+.cardDetailsBtns > button svg > g > path,
+.cardDetailsBtns > button svg > path {
+  fill: #ffffff;
+}
+.cardDetailsBtns > .playBtn {
+  background-color: #ffffff;
+}
+.cardDetailsBtns > .playBtn > svg > path {
+  fill: #181818;
+}
+.cardDetailsBtns > .playBtn:hover {
+  background-color: #e6e6e6;
+}
+.cardDetailsBtns > .detailsBtn {
+  margin-left: auto;
+  padding: 10px;
+}
+
+.cardContent.details {
+  width: 800px;
+  min-height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -12%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  animation: openCardDetails 0.2s ease forwards; /* cubic-bezier(0, 0.8, 0.4, 1) */
+  box-shadow: 0 0 12px #00000080;
+}
+@keyframes cardOpenDetails {
+  0% {
+    min-width: 320px;
+    height: 400px;
+  }
+  100% {
+    width: 800px;
+    min-height: 600px;
+  }
+}
