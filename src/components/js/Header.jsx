@@ -32,6 +32,23 @@ let Header = (props) => {
   return (
     <header>
       <h1>Myflix</h1>
+      <nav className={styles.headerNav}>
+        <ul className={styles.headerNavMenu}>
+          <li>
+            <a href='#'>Home</a>
+          </li>
+          <li>
+            <a href='#'>TV Shows</a>
+          </li>
+          <li>
+            <a href='#'>Movies</a>
+          </li>
+          <li>
+            <a href='#'>My List</a>
+          </li>
+        </ul>
+      </nav>
+
       <div className={styles.headerSearch}>
         <div
           className={

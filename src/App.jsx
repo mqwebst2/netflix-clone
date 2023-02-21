@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './components/js/Header';
-import Form from './components/js/Form';
 import Card from './components/js/Card';
 
 const apikey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [movies, setMovies] = useState([]);
-  let handleSubmit = (event, title) => {
+  const [watchlist, setWatchlist] = useState([]);
+
+  let handleMovieSearch = (event, title) => {
     event.preventDefault();
     let urlTitle = title.replaceAll(' ', '+');
     fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
@@ -17,6 +18,28 @@ function App() {
         setMovies(data.Search);
       });
   };
+
+  let addToWatchlist = (item) =>
+    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
+
+  let delFromWatchlist = (item) =>
+    setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter((movie) => item.imdbID !== movie.imdbID)
+    );
+
+  let checkWatchlist = (item) =>
+    watchlist.find((movie) => item.imdbID === movie.imdbID);
+
+  let handleWatchlist = (movie) => {
+    checkWatchlist(movie);
+    console.log(checkWatchlist);
+    if (checkWatchlist === undefined) {
+      addToWatchlist(movie);
+    } else {
+      delFromWatchlist(movie);
+    }
+  };
+
   let movieCards = movies.map((movie) => {
     return (
       <Card
@@ -27,19 +50,9 @@ function App() {
     );
   });
 
-  const [watchlist, setWatchlist] = useState([]);
-  let addToWatchlist = (item) => {
-    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
-  };
-  let delFromWatchlist = (imdbID) => {
-    setWatchlist((prevWatchlist) =>
-      prevWatchlist.filter((movie) => imdbID !== movie.imdbID)
-    );
-  };
-
   return (
     <div className='App'>
-      <Header onSubmit={handleSubmit} />
+      <Header onSubmit={handleMovieSearch} />
       <div className='main'>
         <div className='searchResult'>
           {movies.length ? (

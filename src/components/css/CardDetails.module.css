@@ -155,7 +155,7 @@
     #18181880 1.5%,
     #181818b0 2%,
     #181818d0 2.5%,
-    #181818 3%
+    #181818 4%
   );
 }
 
@@ -192,6 +192,20 @@
 }
 .cardDetailsBtns > .playBtn:hover {
   background-color: #e6e6e6;
+}
+.cardDetails.hover.fullDetails .playBtn {
+  gap: 8px;
+  width: max-content;
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 4px;
+  color: #181818;
+  font-weight: 700;
+}
+.cardDetails.hover.fullDetails .playBtn > svg {
+  width: 20px;
+  height: 20px;
 }
 .cardDetailsBtns > .detailsBtn {
   margin-left: auto;

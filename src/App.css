@@ -1,7 +1,16 @@
 body {
   position: relative;
-  overflow: hidden;
   background-color: #141414;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: #e5e5e5;
+}
+a:focus,
+a:hover {
+  color: #b3b3b3;
 }
 
 .main {

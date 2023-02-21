@@ -54,6 +54,7 @@ let CardDetails = (props) => {
             <div className={styles.cardDetailsBtns}>
               <button className={styles.playBtn}>
                 <Play />
+                {props.details && <span>Play</span>}
               </button>
               <button>
                 <Plus />
