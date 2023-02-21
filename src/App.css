@@ -1,5 +1,6 @@
 body {
   position: relative;
+  overflow: hidden;
   background-color: #141414;
 }
 

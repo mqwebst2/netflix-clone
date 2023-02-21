@@ -2,15 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
 }
 .cardContent {
   display: flex;
   flex-direction: column;
   width: 240px;
   height: 140px;
-  z-index: 1;
   overflow: hidden;
   border-radius: 6px;
 }

@@ -24,6 +24,9 @@ let Header = (props) => {
       }
     };
     window.addEventListener('click', handleToggle);
+    return () => {
+      window.removeEventListener('click', handleToggle);
+    };
   }, []);
 
   return (

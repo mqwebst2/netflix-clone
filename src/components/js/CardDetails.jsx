@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import styles from '../css/CardDetails.module.css';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
 import { ReactComponent as Close } from '/src/assets/close.svg';
@@ -6,49 +6,69 @@ import { ReactComponent as Play } from '/src/assets/play.svg';
 import { ReactComponent as Plus } from '/src/assets/plus.svg';
 
 let CardDetails = (props) => {
-  const [details, setDetails] = useState(false);
-
   return (
     <div
       className={
-        details
-          ? `${styles.cardDetails} ${styles.fullDetails}`
-          : styles.cardDetails
+        props.hover
+          ? props.details
+            ? `${styles.cardOverlay} ${styles.hover} ${styles.fullDetails}`
+            : `${styles.cardOverlay} ${styles.hover}`
+          : styles.cardOverlay
       }
-      style={props.hover ? { display: 'flex' } : { display: 'none' }}
+      onClick={() => {
+        if (props.details) {
+          props.setDetails(false);
+          props.setHover(false);
+        }
+      }}
     >
-      <div className={styles.cardDetailsContent}>
-        {details && (
-          <button
-            className={styles.cardDetailsClose}
-            onClick={() => setDetails(false)}
-          >
-            <Close />
-          </button>
-        )}
-        <div className={styles.cardDetailsPoster}>
-          <img src={props.Poster} className={styles.cardDetailsImage} />
-          <div className={styles.cardDetailsTitle}>
-            <h3>{props.Title}</h3>
+      <div
+        className={
+          props.hover
+            ? props.details
+              ? `${styles.cardDetails} ${styles.hover} ${styles.fullDetails}`
+              : `${styles.cardDetails} ${styles.hover}`
+            : styles.cardDetails
+        }
+      >
+        <div className={styles.cardDetailsContent}>
+          {props.details && (
+            <button
+              className={styles.cardDetailsClose}
+              onClick={() => {
+                props.setDetails(false);
+                props.setHover(false);
+              }}
+            >
+              <Close />
+            </button>
+          )}
+          <div className={styles.cardDetailsPoster}>
+            <img src={props.Poster} className={styles.cardDetailsImage} />
+            <div className={styles.cardDetailsTitle}>
+              <h3>{props.Title}</h3>
+            </div>
           </div>
-        </div>
 
-        <div className={styles.cardDetailsInfo}>
-          <div className={styles.cardDetailsBtns}>
-            <button className={styles.playBtn}>
-              <Play />
-            </button>
-            <button>
-              <Plus />
-            </button>
-            {!details && (
-              <button
-                className={styles.detailsBtn}
-                onClick={() => setDetails(true)}
-              >
-                <Arrow />
+          <div className={styles.cardDetailsInfo}>
+            <div className={styles.cardDetailsBtns}>
+              <button className={styles.playBtn}>
+                <Play />
               </button>
-            )}
+              <button>
+                <Plus />
+              </button>
+              {!props.details && (
+                <button
+                  className={styles.detailsBtn}
+                  onClick={() => props.setDetails(true)}
+                >
+                  <Arrow />
+                </button>
+              )}
+            </div>
+
+            {props.details && <div className={styles.test}></div>}
           </div>
         </div>
       </div>
@@ -57,35 +77,3 @@ let CardDetails = (props) => {
 };
 
 export default CardDetails;
-
-/* {details && (
-          <div className={styles.cardClose} onClick={handleToggle}>
-            <Close />
-          </div>
-        )}
-
-        <div className={styles.cardPoster}>
-          <img src={props.Poster} className={styles.poster} />
-        </div>
-
-        {(hover || details) && (
-          <div className={styles.cardInfo}>
-            <div className={styles.cardTitle}>
-              <h3>{props.Title}</h3>
-            </div>
-
-            <div className={styles.cardInfoBtns}>
-              <button className={styles.playBtn}>
-                <Play />
-              </button>
-              <button className={styles.watchlistBtn}>
-                <Plus />
-              </button>
-              {!details && (
-                <button className={styles.detailsBtn} onClick={handleToggle}>
-                  <Arrow />
-                </button>
-              )}
-            </div>
-          </div>
-        )} */
