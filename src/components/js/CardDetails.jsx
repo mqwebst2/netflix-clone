@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../css/CardDetails.module.css';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
+import { ReactComponent as Check } from '/src/assets/check.svg';
 import { ReactComponent as Close } from '/src/assets/close.svg';
 import { ReactComponent as Play } from '/src/assets/play.svg';
 import { ReactComponent as Plus } from '/src/assets/plus.svg';
@@ -56,9 +57,11 @@ let CardDetails = (props) => {
                 <Play />
                 {props.details && <span>Play</span>}
               </button>
-              <button>
-                <Plus />
+
+              <button onClick={props.handleWatchlist}>
+                {props.checkWatchlist() === undefined ? <Plus /> : <Check />}
               </button>
+
               {!props.details && (
                 <button
                   className={styles.detailsBtn}

@@ -19,24 +19,29 @@ function App() {
       });
   };
 
-  let addToWatchlist = (item) =>
+  let addToWatchlist = (item) => {
     setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
+    console.log('add', watchlist);
+  };
 
-  let delFromWatchlist = (item) =>
+  let delFromWatchlist = (item) => {
     setWatchlist((prevWatchlist) =>
       prevWatchlist.filter((movie) => item.imdbID !== movie.imdbID)
     );
+    console.log('del', watchlist);
+  };
 
   let checkWatchlist = (item) =>
     watchlist.find((movie) => item.imdbID === movie.imdbID);
 
   let handleWatchlist = (movie) => {
-    checkWatchlist(movie);
-    console.log(checkWatchlist);
-    if (checkWatchlist === undefined) {
+    console.log(checkWatchlist(movie));
+    if (checkWatchlist(movie) === undefined) {
       addToWatchlist(movie);
+      return true;
     } else {
       delFromWatchlist(movie);
+      return false;
     }
   };
 
@@ -45,7 +50,8 @@ function App() {
       <Card
         key={movie.imdbID}
         {...movie}
-        addMovie={() => addToWatchlist(movie)}
+        handleWatchlist={() => handleWatchlist(movie)}
+        checkWatchlist={() => checkWatchlist(movie)}
       />
     );
   });
