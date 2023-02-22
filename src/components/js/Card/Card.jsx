@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../../css/Card/Card.module.css';
 import CardDetails from './CardDetails.jsx';
+const apikey = import.meta.env.VITE_API_KEY;
 
 let Card = (props) => {
   const [hover, setHover] = useState(false);
   const [details, setDetails] = useState(false);
+  const [metadata, setMetadata] = useState({});
+
+  useEffect(() => {
+    fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${props.imdbID}`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        setMetadata(data);
+      });
+  }, []);
 
   return !props.Error ? (
     <>
@@ -20,6 +31,7 @@ let Card = (props) => {
           </div>
         </div>
         <CardDetails
+          metadata={metadata}
           hover={hover}
           setHover={setHover}
           details={details}

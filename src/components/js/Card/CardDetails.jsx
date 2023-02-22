@@ -72,9 +72,76 @@ let CardDetails = (props) => {
               )}
             </div>
 
-            <div className={styles.cardDetailsMetadata}></div>
+            <div className={styles.cardDetailsMetadata}>
+              <div className={styles.cardDetailsMetadataLeft}>
+                <div className={styles.cardDetailsMetadataInfo}>
+                  <span className={styles.cardDetailsMatch}>100% Match</span>
+                  {props.details && (
+                    <span className={styles.cardDetailsYear}>
+                      {props.metadata.Year}
+                    </span>
+                  )}
+                  <span className={styles.cardDetailsRated}>
+                    {props.metadata.Rated}
+                  </span>
+                  <span>
+                    {props.metadata.totalSeasons
+                      ? `${props.metadata.totalSeasons} Seasons`
+                      : props.metadata.Runtime}
+                  </span>
+                </div>
 
-            {props.details && <div className={styles.test}></div>}
+                {props.details && (
+                  <div className={styles.cardDetailsPlot}>
+                    {props.metadata.Plot}
+                  </div>
+                )}
+              </div>
+
+              {props.details && (
+                <div className={styles.cardDetailsMetadataRight}>
+                  <div className={styles.cardDetailsMetadataCast}>
+                    <span>Cast:</span> {props.metadata.Actors}
+                  </div>
+
+                  <div className={styles.cardDetailsMetadataDirector}>
+                    <span>Director:</span> {props.metadata.Director}
+                  </div>
+
+                  <div className={styles.cardDetailsMetadataGenres}>
+                    <span>Genre:</span> {props.metadata.Genre}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {props.details && (
+              <>
+                <div className={styles.test}></div>
+
+                <div className={styles.cardDetailsAbout}>
+                  <h3>
+                    <span>About</span> {props.metadata.Title}
+                  </h3>
+                  <div className={styles.cardDetailsAboutInfo}>
+                    {/* prettier-ignore */}
+                    <div><span>Director:</span> {props.metadata.Director}</div>
+                    {/* prettier-ignore */}
+                    <div><span>Cast:</span> {props.metadata.Actors}</div>
+                    {/* prettier-ignore */}
+                    <div><span>Writer:</span> {props.metadata.Writer}</div>
+                    {/* prettier-ignore */}
+                    <div><span>Genres:</span> {props.metadata.Genre}</div>
+                    <div>
+                      <span>Maturity rating:</span>
+                      <span className={styles.cardDetailsRated}>
+                        {props.metadata.Rated}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

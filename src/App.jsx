@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/js/Header';
 import Card from './components/js/Card/Card';
-
 const apikey = import.meta.env.VITE_API_KEY;
 
 function App() {
