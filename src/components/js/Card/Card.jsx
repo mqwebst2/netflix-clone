@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../css/Card.module.css';
+import styles from '../../css/Card/Card.module.css';
 import CardDetails from './CardDetails.jsx';
 
 let Card = (props) => {

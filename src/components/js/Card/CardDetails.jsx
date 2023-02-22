@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/CardDetails.module.css';
+import styles from '../../css/Card/CardDetails.module.css';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
 import { ReactComponent as Check } from '/src/assets/check.svg';
 import { ReactComponent as Close } from '/src/assets/close.svg';
