@@ -72,6 +72,8 @@ let CardDetails = (props) => {
               )}
             </div>
 
+            <div className={styles.cardDetailsMetadata}></div>
+
             {props.details && <div className={styles.test}></div>}
           </div>
         </div>

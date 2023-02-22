@@ -85,7 +85,7 @@
   background-color: #181818;
   cursor: pointer;
 }
-.cardDetailsClose > svg > g > path {
+.cardDetailsClose path {
   fill: #ffffff;
 }
 
@@ -97,7 +97,7 @@
   position: relative;
   z-index: 0;
 }
-.cardDetails.hover.fullDetails > .cardDetailsContent > .cardDetailsPoster {
+.cardDetails.hover.fullDetails .cardDetailsPoster {
   min-height: 480px;
   z-index: 0;
 }
@@ -105,10 +105,7 @@
   object-fit: cover;
   object-position: 50% 0%;
 }
-.cardDetails.hover.fullDetails
-  > .cardDetailsContent
-  > .cardDetailsPoster
-  > .cardDetailsImage {
+.cardDetails.hover.fullDetails .cardDetailsImage {
   min-height: 1000px;
   object-fit: unset;
 }
@@ -214,6 +211,6 @@
 
 .test {
   height: 600vh;
-  background-color: red;
+  /* background-color: red; */
   z-index: 10;
 }
