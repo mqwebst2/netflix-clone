@@ -8,12 +8,9 @@ import { ReactComponent as Play } from '/src/assets/play.svg';
 import { ReactComponent as Plus } from '/src/assets/plus.svg';
 
 let CardDetails = (props) => {
-  // let runtimeMin = parseInt(props.metadata.Runtime.split(' ')[0]);
-  // let durationHours = Math.floor(runtimeMin / 60);
-  // let durationMins = runtimeMin % 60;
-
   return (
     <div
+      id='card-overlay'
       className={
         props.hover
           ? props.details
@@ -21,14 +18,13 @@ let CardDetails = (props) => {
             : `${styles.cardOverlay} ${styles.hover}`
           : styles.cardOverlay
       }
-      onClick={() => {
-        if (props.details) {
+      onClick={(evt) => {
+        if (props.details && evt.target.id === 'card-overlay') {
           props.setDetails(false);
           props.setHover(false);
         }
       }}
     >
-      <CardMetadata {...props.metadata} details={props.details} />
       <div
         className={
           props.hover
@@ -78,79 +74,7 @@ let CardDetails = (props) => {
               )}
             </div>
 
-            <div className={styles.cardDetailsMetadata}>
-              <div className={styles.cardDetailsMetadataLeft}>
-                <div className={styles.cardDetailsMetadataInfo}>
-                  <span className={styles.cardDetailsMatch}>100% Match</span>
-                  {props.details && (
-                    <span className={styles.cardDetailsYear}>
-                      {props.metadata.Year}
-                    </span>
-                  )}
-                  <span className={styles.cardDetailsRated}>
-                    {props.metadata.Rated}
-                  </span>
-                  <span>
-                    {
-                      props.metadata.totalSeasons
-                        ? `${props.metadata.totalSeasons} Seasons`
-                        : props.metadata
-                            .Runtime /* `${durationHours}h ${durationMins}m` */
-                    }
-                  </span>
-                </div>
-
-                {props.details && (
-                  <div className={styles.cardDetailsPlot}>
-                    {props.metadata.Plot}
-                  </div>
-                )}
-              </div>
-
-              {props.details && (
-                <div className={styles.cardDetailsMetadataRight}>
-                  <div className={styles.cardDetailsMetadataCast}>
-                    <span>Cast:</span> {props.metadata.Actors}
-                  </div>
-
-                  <div className={styles.cardDetailsMetadataDirector}>
-                    <span>Director:</span> {props.metadata.Director}
-                  </div>
-
-                  <div className={styles.cardDetailsMetadataGenres}>
-                    <span>Genre:</span> {props.metadata.Genre}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {props.details && (
-              <>
-                <div className={styles.test}></div>
-
-                <div className={styles.cardDetailsAbout}>
-                  <h3>
-                    <span>About</span> {props.metadata.Title}
-                  </h3>
-                  <div className={styles.cardDetailsAboutInfo}>
-                    {/* prettier-ignore */}
-                    <div><span>Director:</span> {props.metadata.Director}</div>
-                    {/* prettier-ignore */}
-                    <div><span>Cast:</span> {props.metadata.Actors}</div>
-                    {/* prettier-ignore */}
-                    <div><span>Writer:</span> {props.metadata.Writer}</div>
-                    {/* prettier-ignore */}
-                    <div><span>Genres:</span> {props.metadata.Genre}</div>
-                    <div>
-                      <span>Maturity rating:</span>
-                      <span className={styles.cardDetailsRated}>
-                        {props.metadata.Rated}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
+            <CardMetadata {...props.metadata} details={props.details} />
           </div>
         </div>
       </div>

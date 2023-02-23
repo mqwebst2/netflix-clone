@@ -1,72 +1,72 @@
-.cardDetailsMetadata {
+.cardMetadata {
   display: flex;
   gap: 40px;
 }
 
-.cardDetailsMetadataLeft {
+.cardMetadataLeft {
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
 }
-.cardDetails.hover.fullDetails .cardDetailsMetadataLeft {
+.cardDetails.hover.fullDetails .cardMetadataLeft {
   width: 64%;
 }
-.cardDetailsMetadataInfo {
+.cardMetadataInfo {
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 500;
   font-size: 1.2rem;
 }
-.cardDetailsMatch {
+.cardMetadataMatch {
   color: #46d369;
 }
-.cardDetailsRated {
+.cardMetadataRated {
   display: flex;
   width: max-content;
   padding: 1px 5px;
   border: solid 1px #ffffff80;
   color: #ffffff !important;
 }
-.cardDetailsPlot {
+.cardMetadataPlot {
   line-height: 1.6rem;
 }
 
-.cardDetailsMetadataRight {
+.cardMetadataRight {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 36%;
   line-height: 1.6rem;
 }
-.cardDetailsMetadataRight span {
+.cardMetadataRight span {
   color: #777777;
 }
 
-.cardDetailsAbout {
+.cardMetadataAbout {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 40px;
 }
-.cardDetailsAbout > h3 {
+.cardMetadataAbout > h3 {
   font-size: 1.6rem;
   font-weight: 700;
 }
-.cardDetailsAbout > h3 > span {
+.cardMetadataAbout > h3 > span {
   font-weight: 400;
 }
-.cardDetailsAboutInfo {
+.cardMetadataAboutInfo {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.cardDetailsAboutInfo div {
+.cardMetadataAboutInfo div {
   display: flex;
   gap: 6px;
 }
-.cardDetailsAboutInfo span {
+.cardMetadataAboutInfo span {
   color: #777777;
 }
 

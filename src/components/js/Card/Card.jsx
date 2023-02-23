@@ -6,13 +6,15 @@ const apikey = import.meta.env.VITE_API_KEY;
 let Card = (props) => {
   const [hover, setHover] = useState(false);
   const [details, setDetails] = useState(false);
-  const [metadata, setMetadata] = useState({});
+  const [metadata, setMetadata] = useState(null);
 
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${props.imdbID}`)
       .then((resp) => resp.json())
       .then((data) => setMetadata(data));
   }, []);
+
+  if (!metadata) return null;
 
   return !props.Error ? (
     <>
