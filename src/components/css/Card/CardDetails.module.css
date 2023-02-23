@@ -20,8 +20,6 @@
 .cardDetails {
   display: none;
   align-self: center;
-  width: 0px;
-  height: 0px;
   overflow: hidden;
   border-radius: 6px;
   color: #ffffff;
@@ -168,7 +166,6 @@
 .cardDetailsBtns > button {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 36px;
   height: 36px;
   padding: 8px;
@@ -186,6 +183,7 @@
 }
 .cardDetailsBtns > .playBtn {
   background-color: #ffffff;
+  border: none;
 }
 .cardDetailsBtns > .playBtn path {
   fill: #181818;
