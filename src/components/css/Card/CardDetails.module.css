@@ -242,6 +242,7 @@
   width: max-content;
   padding: 1px 5px;
   border: solid 1px #ffffff80;
+  color: #ffffff !important;
 }
 .cardDetailsPlot {
   line-height: 1.6rem;

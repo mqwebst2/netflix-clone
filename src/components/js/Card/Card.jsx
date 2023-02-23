@@ -11,10 +11,7 @@ let Card = (props) => {
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${props.imdbID}`)
       .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        setMetadata(data);
-      });
+      .then((data) => setMetadata(data));
   }, []);
 
   return !props.Error ? (

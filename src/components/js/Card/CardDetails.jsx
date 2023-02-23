@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../css/Card/CardDetails.module.css';
+import CardMetadata from './CardMetadata';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
 import { ReactComponent as Check } from '/src/assets/check.svg';
 import { ReactComponent as Close } from '/src/assets/close.svg';
@@ -7,6 +8,10 @@ import { ReactComponent as Play } from '/src/assets/play.svg';
 import { ReactComponent as Plus } from '/src/assets/plus.svg';
 
 let CardDetails = (props) => {
+  // let runtimeMin = parseInt(props.metadata.Runtime.split(' ')[0]);
+  // let durationHours = Math.floor(runtimeMin / 60);
+  // let durationMins = runtimeMin % 60;
+
   return (
     <div
       className={
@@ -23,6 +28,7 @@ let CardDetails = (props) => {
         }
       }}
     >
+      <CardMetadata {...props.metadata} details={props.details} />
       <div
         className={
           props.hover
@@ -85,9 +91,12 @@ let CardDetails = (props) => {
                     {props.metadata.Rated}
                   </span>
                   <span>
-                    {props.metadata.totalSeasons
-                      ? `${props.metadata.totalSeasons} Seasons`
-                      : props.metadata.Runtime}
+                    {
+                      props.metadata.totalSeasons
+                        ? `${props.metadata.totalSeasons} Seasons`
+                        : props.metadata
+                            .Runtime /* `${durationHours}h ${durationMins}m` */
+                    }
                   </span>
                 </div>
 
