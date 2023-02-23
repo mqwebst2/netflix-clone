@@ -130,7 +130,8 @@
 }
 .cardDetailsTitle > h3 {
   width: 60%;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 
 .cardDetailsInfo {
@@ -200,7 +201,8 @@
   padding-right: 16px;
   border-radius: 4px;
   color: #181818;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 .cardDetails.hover.fullDetails .playBtn > svg {
   width: 20px;
