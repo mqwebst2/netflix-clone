@@ -79,6 +79,7 @@
   top: 16px;
   right: 16px;
   z-index: 2;
+  overflow: hidden;
   border-radius: 50%;
   border: none;
   background-color: #181818;
@@ -118,7 +119,6 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  font-size: large;
   background: radial-gradient(
     circle at left bottom,
     #18181830 0,
@@ -130,6 +130,7 @@
 }
 .cardDetailsTitle > h3 {
   width: 60%;
+  font-size: 1.7rem;
 }
 
 .cardDetailsInfo {
