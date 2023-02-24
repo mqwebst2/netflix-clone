@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../css/Form.module.css';
 
 let Form = (props) => {
   const [values, setValues] = useState({
@@ -14,30 +15,33 @@ let Form = (props) => {
   };
 
   return (
-    <div className='Form'>
+    <div className={styles.Form}>
       <h1>Search for your favorite movie</h1>
       <form
+        className={styles.formSubmit}
         onSubmit={(evt) => {
           props.onSubmit(evt, values.apiKey, values.title);
           setValues((prevValues) => ({ ...prevValues, title: '' }));
         }}
       >
-        <label htmlFor='apiKey'>
+        <label htmlFor='apiKey' className={styles.formLabel}>
           API Key:{' '}
           <input
             type='text'
             placeholder='Api Key'
             name='apiKey'
+            className={styles.formInput}
             value={values.apiKey}
             onChange={handleChange}
           />
         </label>
-        <label htmlFor='title'>
+        <label htmlFor='title' className={styles.formLabel}>
           Movie Title:{' '}
           <input
             type='text'
             placeholder='Movie Title'
             name='title'
+            className={styles.formInput}
             value={values.title}
             onChange={handleChange}
           />
@@ -46,7 +50,7 @@ let Form = (props) => {
           type='submit'
           name='submit'
           value='Search'
-          className='form-btn'
+          className={styles.formBtn}
         />
       </form>
     </div>

@@ -1,32 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Form from './components/js/Form';
-import MovieCard from './components/js/MovieCard';
+// IMPORTANT: Handle no results on search; currently crashing app
 
-// API Key = e2e19760
+import React, { useState } from 'react';
+import './App.css';
+import Header from './components/js/Header';
+import Card from './components/js/Card/Card';
+const apikey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
-  let handleSubmit = (event, key, title) => {
+  let handleMovieSearch = (event, title) => {
     event.preventDefault();
     let urlTitle = title.replaceAll(' ', '+');
-    fetch(`https://www.omdbapi.com/?apikey=${key}&s=${urlTitle}`)
+    fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
       .then((resp) => resp.json())
       .then((data) => {
         setMovies(data.Search);
       });
   };
 
+  let addToWatchlist = (item) =>
+    setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
+
+  let delFromWatchlist = (item) =>
+    setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter((movie) => item.imdbID !== movie.imdbID)
+    );
+
+  let checkWatchlist = (item) =>
+    watchlist.find((movie) => item.imdbID === movie.imdbID);
+
+  let handleWatchlist = (movie) => {
+    if (checkWatchlist(movie) === undefined) {
+      addToWatchlist(movie);
+    } else {
+      delFromWatchlist(movie);
+    }
+  };
+
   let movieCards = movies.map((movie) => {
-    return <MovieCard key={movie.imdbID} {...movie} />;
+    return (
+      <Card
+        key={movie.imdbID}
+        {...movie}
+        handleWatchlist={() => handleWatchlist(movie)}
+        checkWatchlist={() => checkWatchlist(movie)}
+      />
+    );
   });
 
   return (
     <div className='App'>
-      <header>My Movies App</header>
-      <Form onSubmit={handleSubmit} />
-      <div className='searchResult'>{movies && movieCards}</div>
+      <Header onSubmit={handleMovieSearch} />
+      <div className='main'>
+        <div className='searchResult'>
+          {movies.length ? (
+            movieCards
+          ) : (
+            <span>Search for a movie or show you want to watch!</span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

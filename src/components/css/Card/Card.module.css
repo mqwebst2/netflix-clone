@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.poster {
+  width: 100%;
+  object-position: 50% 0%;
+}

@@ -1,0 +1,212 @@
+.cardOverlay {
+  position: absolute;
+  cursor: default;
+}
+.cardOverlay.hover {
+  z-index: 2;
+}
+.cardOverlay.hover.fullDetails {
+  width: 100vw;
+  height: 100%;
+  padding-top: 32px;
+  padding-bottom: 8px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  background-color: #00000080;
+}
+
+.cardDetails {
+  display: none;
+  align-self: center;
+  overflow: hidden;
+  border-radius: 6px;
+  color: #ffffff;
+  box-shadow: 0 0 8px 2px #00000080;
+  cursor: pointer;
+}
+.cardDetails.hover {
+  display: flex;
+  width: 360px;
+  height: 360px;
+  animation: openCardDetails 800ms cubic-bezier(0, 0.8, 0.4, 1) forwards;
+}
+@keyframes openCardDetails {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.cardDetails.hover.fullDetails {
+  width: 60vw;
+  min-height: 640px;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 0;
+  right: 0;
+  transition: width 200ms cubic-bezier(0, 0.8, 0.4, 1),
+    height 200ms cubic-bezier(0, 0.8, 0.4, 1);
+}
+
+.cardDetailsContent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.cardDetailsClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 50%;
+  border: none;
+  background-color: #181818;
+  cursor: pointer;
+}
+.cardDetailsClose path {
+  fill: #ffffff;
+}
+
+.cardDetailsPoster {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  z-index: 0;
+}
+.cardDetails.hover.fullDetails .cardDetailsPoster {
+  min-height: 360px;
+  z-index: 0;
+}
+.cardDetailsImage {
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+.cardDetails.hover.fullDetails .cardDetailsImage {
+  min-height: 1000px;
+  object-fit: unset;
+}
+
+.cardDetailsTitle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  padding-left: 6%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    circle at left bottom,
+    #18181830 0,
+    #00000008 40%
+  );
+}
+.cardDetails.hover.fullDetails .cardDetailsTitle {
+  background: none;
+}
+.cardDetailsTitle > h3 {
+  width: 60%;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.cardDetailsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 6%;
+  position: relative;
+  z-index: 1;
+  background-color: #181818;
+}
+.cardDetails.hover.fullDetails .cardDetailsInfo {
+  background: linear-gradient(
+    #18181800 0px,
+    #18181840 32px,
+    #18181860 48px,
+    #18181880 76px,
+    #181818b0 100px,
+    #181818d0 112px,
+    #181818 132px
+  );
+}
+
+.cardDetailsBtns {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+.cardDetails.hover.fullDetails .cardDetailsBtns {
+  margin-bottom: 40px;
+}
+.cardDetailsBtns > button {
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: solid 2px #ffffff80;
+  background-color: #2a2a2a99;
+  cursor: pointer;
+}
+.cardDetailsBtns > button:hover {
+  border-color: #ffffff;
+}
+.cardDetailsBtns path {
+  fill: #ffffff;
+}
+.cardDetailsBtns > .playBtn {
+  background-color: #ffffff;
+  border: none;
+}
+.cardDetailsBtns > .playBtn path {
+  fill: #181818;
+}
+.cardDetailsBtns > .playBtn:hover {
+  background-color: #e6e6e6;
+}
+.cardDetails.hover.fullDetails .playBtn {
+  gap: 8px;
+  width: max-content;
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 4px;
+  color: #181818;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.cardDetails.hover.fullDetails .playBtn > svg {
+  width: 20px;
+  height: 20px;
+}
+.cardDetailsBtns > .detailsBtn {
+  margin-left: auto;
+  padding: 10px;
+}

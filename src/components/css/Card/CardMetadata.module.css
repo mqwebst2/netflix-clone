@@ -1,0 +1,75 @@
+.cardMetadata {
+  display: flex;
+  gap: 40px;
+}
+
+.cardMetadataLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+.cardDetails.hover.fullDetails .cardMetadataLeft {
+  width: 64%;
+}
+.cardMetadataInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+}
+.cardMetadataMatch {
+  color: #46d369;
+}
+.cardMetadataRated {
+  display: flex;
+  width: max-content;
+  padding: 1px 5px;
+  border: solid 1px #ffffff80;
+  color: #ffffff !important;
+}
+.cardMetadataPlot {
+  line-height: 1.6rem;
+}
+
+.cardMetadataRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 36%;
+  line-height: 1.6rem;
+}
+.cardMetadataRight span {
+  color: #777777;
+}
+
+.cardMetadataAbout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+.cardMetadataAbout > h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.cardMetadataAbout > h3 > span {
+  font-weight: 400;
+}
+.cardMetadataAboutInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cardMetadataAboutInfo div {
+  display: flex;
+  gap: 6px;
+}
+.cardMetadataAboutInfo span {
+  color: #777777;
+}
+
+.test {
+  height: 50vh;
+  /* background-color: red; */
+}
