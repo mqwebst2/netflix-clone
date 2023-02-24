@@ -31,7 +31,9 @@ let Header = (props) => {
 
   return (
     <header>
-      <h1>Myflix</h1>
+      <a href='/'>
+        <h1>Myflix</h1>
+      </a>
       <nav className={styles.headerNav}>
         <ul className={styles.headerNavMenu}>
           <li>

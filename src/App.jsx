@@ -1,3 +1,5 @@
+// IMPORTANT: Handle no results on search; currently crashing app
+
 import React, { useState } from 'react';
 import './App.css';
 import Header from './components/js/Header';

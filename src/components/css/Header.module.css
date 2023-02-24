@@ -10,10 +10,10 @@ header {
   z-index: 1;
   background: linear-gradient(#060606, #141414);
 }
-header > h1 {
+header h1 {
   text-transform: uppercase;
   color: red;
-  font-size: 1rem;
+  font-size: 1.8rem;
 }
 
 .headerNav {
