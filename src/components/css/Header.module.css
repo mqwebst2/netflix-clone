@@ -30,6 +30,7 @@ header h1 {
 
 .headerSearch {
   display: flex;
+  align-items: center;
   justify-content: end;
 }
 
@@ -38,13 +39,16 @@ header h1 {
   align-items: center;
   gap: 16px;
   width: 40px;
-  padding: 8px;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
   overflow: hidden;
-  transition: width 0.4s ease;
+  transition: none;
 }
 .headerSearchInner.toggled {
   border: solid 1px #ffffff;
   width: 320px;
+  transition: width 0.4s ease;
 }
 
 .searchIcon {

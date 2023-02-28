@@ -25,3 +25,18 @@
   box-sizing: border-box;
   font-family: Netflix-Sans;
 }
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #dddddd;
+  color: #444444;
+  min-width: 480px;
+  width: 100%;
+  min-height: 480px;
+  height: 100vh;
+  place-items: center;
+  margin: auto;
+}

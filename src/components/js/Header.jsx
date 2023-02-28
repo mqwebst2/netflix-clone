@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Form,
-  NavLink,
   useLoaderData,
-  useNavigation,
+  useNavigate,
+  useSearchParams,
   useSubmit,
 } from 'react-router-dom';
 import { getMoviesSearch } from '../../movies';
@@ -20,15 +20,44 @@ export async function loader({ request }) {
 
 export default function Header() {
   const { q } = useLoaderData();
-  const navigation = useNavigation();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const submit = useSubmit();
 
   const [toggled, setToggled] = useState(false);
 
+  const inputRef = useRef(null);
+
   useEffect(() => {
-    document.getElementById('q').value = q;
-    console.log(q);
-  }, [q]);
+    let searchBar = document.getElementById('search');
+    let handleToggle = (evt) => {
+      let isSearchBar = searchBar.contains(evt.target);
+      if (isSearchBar && !toggled) {
+        setToggled(true);
+        evt.stopPropagation();
+      } else {
+        setToggled(false);
+      }
+    };
+    window.addEventListener('click', handleToggle);
+    return () => {
+      window.removeEventListener('click', handleToggle);
+    };
+  }, []);
+
+  let clearInput = () => {
+    setSearchParams({});
+    navigate(-1);
+  };
+  let handleChange = (event) => {
+    let searchQuery = event.target.value;
+
+    if (searchQuery) {
+      setSearchParams({ q: searchQuery });
+    } else {
+      clearInput();
+    }
+  };
 
   return (
     <header>
@@ -54,37 +83,52 @@ export default function Header() {
 
       <div className={styles.headerSearch}>
         <div
+          id='search'
           className={
             toggled
               ? `${styles.headerSearchInner} ${styles.toggled}`
               : styles.headerSearchInner
           }
         >
-          <div className={styles.searchIcon} onClick={() => setToggled(true)}>
+          <div
+            className={styles.searchIcon}
+            onClick={() => {
+              setToggled(true);
+              setTimeout(() => inputRef.current.focus(), 200);
+            }}
+          >
             <Search id='search-icon' />
           </div>
 
-          <Form className={styles.headerForm} role='search'>
-            <input
-              id='q'
-              className={styles.searchInput}
-              placeholder='Titles'
-              type='search'
-              name='q'
-              defaultValue={q}
-              onChange={(event) => {
-                const isFirstSearch = q == null;
-                submit(event.currentTarget.form, { replace: !isFirstSearch });
-              }}
-            />
+          {toggled && (
+            <Form className={styles.headerForm} role='search'>
+              <input
+                ref={inputRef}
+                id='q'
+                className={styles.searchInput}
+                placeholder='Titles'
+                type='search'
+                name='q'
+                value={searchParams.get('q') || ''}
+                onChange={(event) => {
+                  handleChange(event);
+                  const isFirstSearch = q == null;
+                  submit(event.currentTarget.form, { replace: !isFirstSearch });
+                }}
+              />
 
-            <div
-              className={styles.searchInputClear}
-              onClick={() => setToggled(false)}
-            >
-              <Close />
-            </div>
-          </Form>
+              <div
+                id='search-close'
+                className={styles.searchInputClear}
+                onClick={() => {
+                  clearInput();
+                  inputRef.current.focus();
+                }}
+              >
+                <Close />
+              </div>
+            </Form>
+          )}
         </div>
       </div>
     </header>
