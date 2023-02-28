@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Form,
+  Link,
   useLoaderData,
   useNavigate,
   useSearchParams,
@@ -29,7 +30,7 @@ export default function Header() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    let searchBar = document.getElementById('search');
+    let searchBar = document.getElementById('search-bar');
     let handleToggle = (evt) => {
       let isSearchBar = searchBar.contains(evt.target);
       if (isSearchBar && !toggled) {
@@ -61,29 +62,29 @@ export default function Header() {
 
   return (
     <header>
-      <a href='/'>
+      <Link to={'browse'}>
         <h1>Myflix</h1>
-      </a>
+      </Link>
       <nav className={styles.headerNav}>
         <ul className={styles.headerNavMenu}>
           <li>
-            <a href='#'>Home</a>
+            <Link to={'browse'}>Home</Link>
           </li>
           <li>
-            <a href='#'>TV Shows</a>
+            <Link to={'browse/genre/tv-shows'}>TV Shows</Link>
           </li>
           <li>
-            <a href='#'>Movies</a>
+            <Link to={'browse/genre/movies'}>Movies</Link>
           </li>
           <li>
-            <a href='#'>My List</a>
+            <Link to={'browse/my-list'}>My List</Link>
           </li>
         </ul>
       </nav>
 
       <div className={styles.headerSearch}>
         <div
-          id='search'
+          id='search-bar'
           className={
             toggled
               ? `${styles.headerSearchInner} ${styles.toggled}`

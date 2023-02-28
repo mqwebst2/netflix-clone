@@ -1,5 +1,3 @@
-// IMPORTANT: Handle no results on search; currently crashing app
-
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import './App.css';
