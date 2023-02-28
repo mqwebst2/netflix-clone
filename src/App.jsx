@@ -1,9 +1,9 @@
 // IMPORTANT: Handle no results on search; currently crashing app
 
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import './App.css';
-// import Header from './components/js/Header';
-import Header from './components/js/Header-new';
+import Header from './components/js/Header';
 import Card from './components/js/Card/Card';
 const apikey = import.meta.env.VITE_API_KEY;
 
@@ -53,17 +53,20 @@ export default function App() {
 
   return (
     <div className='App'>
-      {/* <Header onSubmit={handleMovieSearch} /> */}
       <Header />
       <div className='main'>
-        <div className='searchResult'>
+        <Outlet />
+      </div>
+    </div>
+  );
+}
+
+{
+  /* <div className='searchResult'>
           {movies.length ? (
             movieCards
           ) : (
             <span>Search for a movie or show you want to watch!</span>
           )}
-        </div>
-      </div>
-    </div>
-  );
+        </div> */
 }

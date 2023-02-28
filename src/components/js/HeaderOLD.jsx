@@ -1,28 +1,9 @@
 import { useEffect, useState } from 'react';
-import {
-  Form,
-  NavLink,
-  useLoaderData,
-  useNavigation,
-  useSubmit,
-} from 'react-router-dom';
-import { getMoviesSearch } from '../../movies';
 import styles from '../css/Header.module.css';
 import { ReactComponent as Search } from '/src/assets/search.svg';
 import { ReactComponent as Close } from '/src/assets/close.svg';
 
-export async function loader({ request }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-  const movieSearch = await getMoviesSearch(q);
-  return { movieSearch, q };
-}
-
 let Header = (props) => {
-  const { movieSearch, q } = useLoaderData();
-  const navigation = useNavigation();
-  const submit = useSubmit();
-
   const [value, setValue] = useState('');
   let handleChange = (event) => setValue(event.target.value);
   let handleClear = () => {
@@ -47,10 +28,6 @@ let Header = (props) => {
       window.removeEventListener('click', handleToggle);
     };
   }, []);
-
-  useEffect(() => {
-    document.getElementById('q').value = q;
-  }, [q]);
 
   return (
     <header>
@@ -85,31 +62,7 @@ let Header = (props) => {
           <div className={styles.searchIcon}>
             <Search id='search-icon' />
           </div>
-
-          <Form className={styles.headerForm} role='search'>
-            <input
-              id='q'
-              className={styles.searchInput}
-              placeholder='Titles'
-              type='search'
-              name='q'
-              defaultValue={q}
-              onChange={(event) => {
-                const isFirstSearch = q == null;
-                submit(event.currentTarget.form, { replace: !isFirstSearch });
-              }}
-            />
-          </Form>
-        </div>
-      </div>
-    </header>
-  );
-};
-
-export default Header;
-
-{
-  /* <form
+          <form
             className={styles.headerForm}
             onSubmit={(evt) => props.onSubmit(evt, value)}
           >
@@ -135,5 +88,11 @@ export default Header;
                 )}
               </>
             )}
-          </form> */
-}
+          </form>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
