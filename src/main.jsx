@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import { loader as HeaderLoader } from './components/js/Header';
+// import { loader as HeaderLoader } from './components/js/Header';
 import Home from './pages/Home';
 import TvShows from './pages/TvShows';
 import Movies from './pages/Movies';
 import MyList from './pages/MyList';
+import Search from './pages/SearchResults';
 import ErrorPage from './errorPage';
 import './index.css';
 
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
-    loader: HeaderLoader,
+    // loader: HeaderLoader,
     children: [
       {
         path: 'browse',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: 'browse/my-list',
         element: <MyList />,
+      },
+      {
+        path: 'search',
+        element: <Search />,
       },
     ],
   },

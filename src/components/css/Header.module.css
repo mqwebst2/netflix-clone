@@ -56,7 +56,10 @@ header h1 {
   align-items: center;
   width: 18px;
   height: 18px;
+  overflow: hidden;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 .headerSearchInner.toggled .searchIcon {
   cursor: default;
