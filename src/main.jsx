@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-// import { loader as HeaderLoader } from './components/js/Header';
 import Home from './pages/Home';
 import TvShows from './pages/TvShows';
 import Movies from './pages/Movies';
@@ -16,9 +15,9 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
-    // loader: HeaderLoader,
     children: [
       {
+        index: true,
         path: 'browse',
         element: <Home />,
       },

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './components/js/Header-test';
+import Header from './components/js/Header';
 import Card from './components/js/Card/Card';
 const apikey = import.meta.env.VITE_API_KEY;
 
@@ -53,7 +53,10 @@ export default function App() {
     <div className='App'>
       <Header />
       <div className='main'>
-        <Outlet />
+        <Routes>
+          <Route path='/' element={<Navigate to='/browse' replace />} />
+        </Routes>
+        <Outlet context={[watchlist, setWatchlist]} />
       </div>
     </div>
   );

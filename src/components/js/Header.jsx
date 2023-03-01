@@ -1,62 +1,51 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Form,
   Link,
-  useLoaderData,
+  useLocation,
   useNavigate,
   useSearchParams,
-  useSubmit,
 } from 'react-router-dom';
-import { getMoviesSearch } from '../../movies';
 import styles from '../css/Header.module.css';
-import { ReactComponent as Search } from '/src/assets/search.svg';
-import { ReactComponent as Close } from '/src/assets/close.svg';
-
-export async function loader({ request }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-  const movieSearch = await getMoviesSearch(q);
-  return { movieSearch, q };
-}
+import { ReactComponent as SearchIcon } from '/src/assets/search.svg';
+import { ReactComponent as CloseIcon } from '/src/assets/close.svg';
 
 export default function Header() {
-  const { q } = useLoaderData();
+  const location = useLocation();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const submit = useSubmit();
-
+  const inputRef = useRef(null);
+  const [lastPage, setLastPage] = useState(null);
+  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams({ q: query } || {});
   const [toggled, setToggled] = useState(false);
 
-  const inputRef = useRef(null);
+  const isFirstSearch = searchParams == '';
+
+  useEffect(() => {
+    if (location.pathname !== '/search') setLastPage(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     let searchBar = document.getElementById('search-bar');
-    let handleToggle = (evt) => {
-      let isSearchBar = searchBar.contains(evt.target);
-      if (isSearchBar && !toggled) {
-        setToggled(true);
-        evt.stopPropagation();
-      } else {
-        setToggled(false);
-      }
+    let handleSearchBarToggle = (evt) => {
+      if (!searchBar.contains(evt.target)) setToggled(false);
     };
-    window.addEventListener('click', handleToggle);
+    window.addEventListener('click', handleSearchBarToggle);
     return () => {
-      window.removeEventListener('click', handleToggle);
+      window.removeEventListener('click', handleSearchBarToggle);
     };
   }, []);
 
-  let clearInput = () => {
-    setSearchParams({});
-    navigate(-1);
-  };
-  let handleChange = (event) => {
-    let searchQuery = event.target.value;
+  const handleChange = () => {
+    const value = inputRef.current.value;
+    setQuery(value);
 
-    if (searchQuery) {
-      setSearchParams({ q: searchQuery });
+    if (value) {
+      navigate(`/search?q=${value}`, {
+        replace: !isFirstSearch,
+      });
     } else {
-      clearInput();
+      setSearchParams({}, { replace: true });
+      navigate(lastPage);
     }
   };
 
@@ -91,44 +80,44 @@ export default function Header() {
               : styles.headerSearchInner
           }
         >
-          <div
+          <button
             className={styles.searchIcon}
-            onClick={() => {
-              setToggled(true);
-              setTimeout(() => inputRef.current.focus(), 200);
-            }}
+            onClick={() => setToggled(true)}
           >
-            <Search id='search-icon' />
-          </div>
+            <SearchIcon />
+          </button>
 
           {toggled && (
-            <Form className={styles.headerForm} role='search'>
+            <div
+              className={styles.headerForm}
+              role='search'
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
+                autoFocus
                 ref={inputRef}
                 id='q'
                 className={styles.searchInput}
                 placeholder='Titles'
                 type='search'
                 name='q'
-                value={searchParams.get('q') || ''}
-                onChange={(event) => {
-                  handleChange(event);
-                  const isFirstSearch = q == null;
-                  submit(event.currentTarget.form, { replace: !isFirstSearch });
-                }}
+                value={query}
+                onChange={handleChange}
               />
 
-              <div
-                id='search-close'
-                className={styles.searchInputClear}
-                onClick={() => {
-                  clearInput();
-                  inputRef.current.focus();
-                }}
-              >
-                <Close />
-              </div>
-            </Form>
+              {inputRef.current && inputRef.current.value && (
+                <div
+                  id='search-close'
+                  className={styles.searchInputClear}
+                  onClick={() => {
+                    inputRef.current.value = '';
+                    handleChange();
+                  }}
+                >
+                  <CloseIcon />
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
