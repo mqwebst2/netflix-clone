@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React from 'react';
 import styles from '../../css/Card/CardMetadata.module.css';
 
 let CardMetadata = (props) => {

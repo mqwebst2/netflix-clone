@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import styles from '../../css/Card/CardDetails.module.css';
 import CardMetadata from './CardMetadata';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
@@ -9,6 +9,30 @@ import { ReactComponent as Play } from '/src/assets/play.svg';
 import { ReactComponent as Plus } from '/src/assets/plus.svg';
 
 let CardDetails = (props) => {
+  const {
+    watchlist: [watchlist, setWatchlist],
+  } = useOutletContext();
+
+  let addToWatchlist = () =>
+    setWatchlist((prevWatchlist) => [...prevWatchlist, props]);
+
+  let delFromWatchlist = () =>
+    setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter((movie) => props.imdbID !== movie.imdbID)
+    );
+
+  let checkWatchlist = () =>
+    watchlist.find((movie) => props.imdbID === movie.imdbID);
+
+  let handleWatchlist = () => {
+    if (checkWatchlist() === undefined) {
+      addToWatchlist();
+    } else {
+      delFromWatchlist();
+    }
+    console.log(watchlist);
+  };
+
   return (
     <div
       id='card-overlay'
@@ -61,8 +85,8 @@ let CardDetails = (props) => {
                 {props.details && <span>Play</span>}
               </button>
 
-              <button>
-                <Plus />
+              <button onClick={handleWatchlist}>
+                {checkWatchlist() ? <Check /> : <Plus />}
               </button>
 
               {!props.details && (

@@ -1,16 +1,11 @@
 import { useEffect } from 'react';
-import {
-  useLocation,
-  useOutletContext,
-  useSearchParams,
-} from 'react-router-dom';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
 import Card from '../components/js/Card/Card';
 const apikey = import.meta.env.VITE_API_KEY;
 
 export default function Search() {
   const {
     movies: [movies, setMovies],
-    watchlist: [watchlist, setWatchlist],
   } = useOutletContext();
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q');
@@ -36,14 +31,7 @@ export default function Search() {
   let movieCards =
     movies &&
     movies.map((movie) => {
-      return (
-        <Card
-          key={movie.imdbID}
-          {...movie}
-          // handleWatchlist={() => handleWatchlist(movie)}
-          // checkWatchlist={() => checkWatchlist(movie)}
-        />
-      );
+      return <Card key={movie.imdbID} {...movie} />;
     });
 
   return (

@@ -16,31 +16,29 @@ let Card = (props) => {
 
   if (!metadata) return null;
 
-  return !props.Error ? (
-    <>
-      <div
-        className={styles.card}
-        id={props.imdbID}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => !details && setHover(false)}
-      >
-        <div className={styles.cardContent}>
-          <div className={styles.cardPoster}>
-            <img src={props.Poster} className={styles.poster} />
-          </div>
+  if (props.Error) return <span>{props.Error}</span>;
+
+  return (
+    <div
+      className={styles.card}
+      id={props.imdbID}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => !details && setHover(false)}
+    >
+      <div className={styles.cardContent}>
+        <div className={styles.cardPoster}>
+          <img src={props.Poster} className={styles.poster} />
         </div>
-        <CardDetails
-          metadata={metadata}
-          hover={hover}
-          setHover={setHover}
-          details={details}
-          setDetails={setDetails}
-          {...props}
-        />
       </div>
-    </>
-  ) : (
-    <span>{props.Error}</span>
+      <CardDetails
+        metadata={metadata}
+        hover={hover}
+        setHover={setHover}
+        details={details}
+        setDetails={setDetails}
+        {...props}
+      />
+    </div>
   );
 };
 
