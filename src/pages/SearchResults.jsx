@@ -16,7 +16,6 @@ export default function Search() {
   const query = searchParams.get('q');
 
   let handleMovieSearch = async (title) => {
-    setMovies();
     let urlTitle = title.replaceAll(' ', '+');
     await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
       .then((resp) => resp.json())
@@ -27,6 +26,7 @@ export default function Search() {
   };
 
   useEffect(() => {
+    setMovies(null);
     let searchDelay = setTimeout(() => {
       handleMovieSearch(query);
     }, 400);

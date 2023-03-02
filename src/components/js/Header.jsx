@@ -13,10 +13,10 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const inputRef = useRef(null);
-  const [lastPage, setLastPage] = useState(null);
+  const [lastPage, setLastPage] = useState();
   const [query, setQuery] = useState();
   const [toggled, setToggled] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({ q: query } || '');
   const isFirstSearch = searchParams == '';
 
   useEffect(() => {
@@ -34,23 +34,18 @@ export default function Header() {
     };
   }, []);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
+  const handleChange = () => {
+    const value = inputRef.current.value;
     setQuery(value);
 
     if (value) {
-      setSearchParams(value);
       navigate(`/search?q=${value}`, {
         replace: !isFirstSearch,
       });
     } else {
       setSearchParams();
-      navigate(lastPage);
+      navigate(lastPage, { replace: true });
     }
-
-    // console.log('query', query);
-    // console.log('searchParams', searchParams);
-    // console.log('value', value);
   };
 
   return (
@@ -95,6 +90,7 @@ export default function Header() {
             <div className={styles.headerForm} role='search'>
               <input
                 autoFocus
+                ref={inputRef}
                 id='q'
                 className={styles.searchInput}
                 placeholder='Titles'
@@ -109,8 +105,10 @@ export default function Header() {
                   id='search-close'
                   className={styles.searchInputClear}
                   onClick={(e) => {
-                    console.log(e.target);
-                    handleChange;
+                    inputRef.current.value = '';
+                    handleChange();
+                    e.stopPropagation();
+                    inputRef.current.focus();
                   }}
                 >
                   <CloseIcon />
