@@ -4,7 +4,6 @@ import CardDetails from './CardDetails.jsx';
 const apikey = import.meta.env.VITE_API_KEY;
 
 let Card = (props) => {
-  console.log(props.Error);
   const [hover, setHover] = useState(false);
   const [details, setDetails] = useState(false);
   const [metadata, setMetadata] = useState(null);
@@ -24,10 +23,6 @@ let Card = (props) => {
         id={props.imdbID}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => !details && setHover(false)}
-        onClick={(evt) => {
-          console.log(evt);
-          if (!details && evt.target.nodeName !== 'BUTTON') setDetails(true);
-        }}
       >
         <div className={styles.cardContent}>
           <div className={styles.cardPoster}>

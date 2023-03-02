@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useOutletContext } from 'react-router-dom';
 import styles from '../../css/Card/CardDetails.module.css';
 import CardMetadata from './CardMetadata';
 import { ReactComponent as Arrow } from '/src/assets/arrow.svg';
@@ -60,8 +61,8 @@ let CardDetails = (props) => {
                 {props.details && <span>Play</span>}
               </button>
 
-              <button onClick={props.handleWatchlist}>
-                {props.checkWatchlist() === undefined ? <Plus /> : <Check />}
+              <button>
+                <Plus />
               </button>
 
               {!props.details && (

@@ -38,17 +38,6 @@ export default function App() {
     }
   };
 
-  let movieCards = movies.map((movie) => {
-    return (
-      <Card
-        key={movie.imdbID}
-        {...movie}
-        handleWatchlist={() => handleWatchlist(movie)}
-        checkWatchlist={() => checkWatchlist(movie)}
-      />
-    );
-  });
-
   return (
     <div className='App'>
       <Header />
@@ -56,18 +45,13 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Navigate to='/browse' replace />} />
         </Routes>
-        <Outlet context={[watchlist, setWatchlist]} />
+        <Outlet
+          context={{
+            movies: [movies, setMovies],
+            watchlist: [watchlist, setWatchlist],
+          }}
+        />
       </div>
     </div>
   );
-}
-
-{
-  /* <div className='searchResult'>
-          {movies.length ? (
-            movieCards
-          ) : (
-            <span>Search for a movie or show you want to watch!</span>
-          )}
-        </div> */
 }
