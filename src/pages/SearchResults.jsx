@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
-import { useOutletContext, useSearchParams } from 'react-router-dom';
-import { getMoviesSearch } from '../movies';
+import {
+  useLocation,
+  useOutletContext,
+  useSearchParams,
+} from 'react-router-dom';
 import Card from '../components/js/Card/Card';
 const apikey = import.meta.env.VITE_API_KEY;
 
@@ -12,33 +15,36 @@ export default function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q');
 
-  let handleMovieSearch = (title) => {
+  let handleMovieSearch = async (title) => {
+    setMovies();
     let urlTitle = title.replaceAll(' ', '+');
-    fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
+    await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
       .then((resp) => resp.json())
       .then((data) => {
         setMovies(data.Search);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     let searchDelay = setTimeout(() => {
       handleMovieSearch(query);
-      console.log(movies);
     }, 400);
     return () => clearTimeout(searchDelay);
   }, [query]);
 
-  let movieCards = movies.map((movie) => {
-    return (
-      <Card
-        key={movie.imdbID}
-        {...movie}
-        // handleWatchlist={() => handleWatchlist(movie)}
-        // checkWatchlist={() => checkWatchlist(movie)}
-      />
-    );
-  });
+  let movieCards =
+    movies &&
+    movies.map((movie) => {
+      return (
+        <Card
+          key={movie.imdbID}
+          {...movie}
+          // handleWatchlist={() => handleWatchlist(movie)}
+          // checkWatchlist={() => checkWatchlist(movie)}
+        />
+      );
+    });
 
   return (
     <div id='Search Results'>
@@ -47,7 +53,7 @@ export default function Search() {
       </h2>
 
       <div className='searchResult'>
-        {movies.length ? (
+        {movies ? (
           movieCards
         ) : (
           <span>Search for a movie or show you want to watch!</span>

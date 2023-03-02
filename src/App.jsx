@@ -6,7 +6,7 @@ import Card from './components/js/Card/Card';
 const apikey = import.meta.env.VITE_API_KEY;
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
 
   let handleMovieSearch = (event, title) => {

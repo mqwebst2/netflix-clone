@@ -14,10 +14,9 @@ export default function Header() {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const [lastPage, setLastPage] = useState(null);
-  const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams({ q: query } || {});
+  const [query, setQuery] = useState();
   const [toggled, setToggled] = useState(false);
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const isFirstSearch = searchParams == '';
 
   useEffect(() => {
@@ -35,18 +34,23 @@ export default function Header() {
     };
   }, []);
 
-  const handleChange = () => {
-    const value = inputRef.current.value;
+  const handleChange = (e) => {
+    const value = e.target.value;
     setQuery(value);
 
     if (value) {
+      setSearchParams(value);
       navigate(`/search?q=${value}`, {
         replace: !isFirstSearch,
       });
     } else {
-      setSearchParams({}, { replace: true });
+      setSearchParams();
       navigate(lastPage);
     }
+
+    // console.log('query', query);
+    // console.log('searchParams', searchParams);
+    // console.log('value', value);
   };
 
   return (
@@ -88,30 +92,25 @@ export default function Header() {
           </button>
 
           {toggled && (
-            <div
-              className={styles.headerForm}
-              role='search'
-              onSubmit={(e) => e.preventDefault()}
-            >
+            <div className={styles.headerForm} role='search'>
               <input
                 autoFocus
-                ref={inputRef}
                 id='q'
                 className={styles.searchInput}
                 placeholder='Titles'
                 type='search'
                 name='q'
-                value={query}
+                value={query || ''}
                 onChange={handleChange}
               />
 
-              {inputRef.current && inputRef.current.value && (
+              {query && (
                 <div
                   id='search-close'
                   className={styles.searchInputClear}
-                  onClick={() => {
-                    inputRef.current.value = '';
-                    handleChange();
+                  onClick={(e) => {
+                    console.log(e.target);
+                    handleChange;
                   }}
                 >
                   <CloseIcon />
