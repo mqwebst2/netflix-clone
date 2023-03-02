@@ -14,15 +14,17 @@ let CardDetails = (props) => {
   } = useOutletContext();
 
   let addToWatchlist = () =>
-    setWatchlist((prevWatchlist) => [...prevWatchlist, props]);
+    setWatchlist((prevWatchlist) => [...prevWatchlist, props.metadata.imdbID]);
 
   let delFromWatchlist = () =>
     setWatchlist((prevWatchlist) =>
-      prevWatchlist.filter((movie) => props.imdbID !== movie.imdbID)
+      prevWatchlist.filter(
+        (movieImdbID) => props.metadata.imdbID !== movieImdbID
+      )
     );
 
   let checkWatchlist = () =>
-    watchlist.find((movie) => props.imdbID === movie.imdbID);
+    watchlist.find((movieImdbID) => props.metadata.imdbID === movieImdbID);
 
   let handleWatchlist = () => {
     if (checkWatchlist() === undefined) {
@@ -72,9 +74,12 @@ let CardDetails = (props) => {
             </button>
           )}
           <div className={styles.cardDetailsPoster}>
-            <img src={props.Poster} className={styles.cardDetailsImage} />
+            <img
+              src={props.metadata.Poster}
+              className={styles.cardDetailsImage}
+            />
             <div className={styles.cardDetailsTitle}>
-              <h3>{props.Title}</h3>
+              <h3>{props.metadata.Title}</h3>
             </div>
           </div>
 

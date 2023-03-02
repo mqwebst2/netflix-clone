@@ -31,7 +31,8 @@ export default function Search() {
   let movieCards =
     movies &&
     movies.map((movie) => {
-      return <Card key={movie.imdbID} {...movie} />;
+      console.log(movie);
+      return <Card key={movie.imdbID} imdbID={movie.imdbID} />;
     });
 
   return (
