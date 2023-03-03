@@ -52,6 +52,10 @@ h2 {
   font-weight: 500;
 }
 
+section {
+  margin: 3vw 0;
+}
+
 #error-page {
   display: flex;
   flex-direction: column;

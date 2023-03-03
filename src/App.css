@@ -33,3 +33,12 @@
   position: relative;
   background-color: red;
 }
+
+.movie-row {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  padding-block: 40px;
+  position: relative;
+  z-index: 1;
+}

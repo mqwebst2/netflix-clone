@@ -1,20 +1,42 @@
-const apikey = import.meta.env.VITE_API_KEY;
-
-export async function getMoviesSearch(movieTitle) {
-  if (movieTitle !== null) {
-    let urlTitle = movieTitle.replaceAll(' ', '+');
-    await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${urlTitle}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        return data.Search;
-      });
-  }
-}
-
-export async function getMovieDetails(movieImdbID, callbackSetter) {
-  if (movieImdbID !== null) {
-    fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${movieImdbID}`)
-      .then((resp) => resp.json())
-      .then((data) => callbackSetter(data));
-  }
-}
+export default {
+  homePage: {
+    popular: [
+      'tt8111088',
+      'tt11145118',
+      'tt8749198',
+      'tt7985704',
+      'tt2077823',
+      'tt15715052',
+      'tt17663992',
+      'tt16418896',
+      'tt11192306',
+      'tt10986410',
+    ],
+    continue: [],
+    topMovies: [
+      'tt10954600',
+      'tt14209916',
+      'tt13833688',
+      'tt10640346',
+      'tt15679400',
+      'tt12573454',
+      'tt11813216',
+      'tt19623240',
+      'tt1630029',
+      'tt9114286',
+    ],
+    topTvShows: [
+      'tt3581920',
+      'tt7335184',
+      'tt10293938',
+      'tt18335752',
+      'tt14269590',
+      'tt4236770',
+      'tt8806524',
+      'tt0489974',
+      'tt13406094',
+      'tt1520211',
+    ],
+    youWatched: [],
+  },
+};
