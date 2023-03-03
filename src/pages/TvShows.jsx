@@ -3,9 +3,7 @@ import React from 'react';
 export default function TvShows() {
   return (
     <div id='tv-shows'>
-      <h2 style={{ color: '#ffffff', fontSize: '2.5rem', fontWeight: '300' }}>
-        TV Shows
-      </h2>
+      <h1>TV Shows</h1>
 
       <div
         className='tv-shows-grid'

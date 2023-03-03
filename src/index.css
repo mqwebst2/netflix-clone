@@ -26,6 +26,32 @@
   font-family: Netflix-Sans;
 }
 
+body {
+  position: relative;
+  background-color: #141414;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: #e5e5e5;
+}
+a:focus,
+a:hover {
+  color: #b3b3b3;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 #error-page {
   display: flex;
   flex-direction: column;

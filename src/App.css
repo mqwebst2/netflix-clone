@@ -1,17 +1,3 @@
-body {
-  position: relative;
-  background-color: #141414;
-}
-
-a {
-  text-decoration: none;
-  color: #e5e5e5;
-}
-a:focus,
-a:hover {
-  color: #b3b3b3;
-}
-
 .main {
   padding: 40px 4%;
 }

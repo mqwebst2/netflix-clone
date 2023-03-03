@@ -13,9 +13,7 @@ export default function MyList() {
 
   return (
     <div id='my-list'>
-      <h2 style={{ color: '#ffffff', fontSize: '2.5rem', fontWeight: '300' }}>
-        My List
-      </h2>
+      <h1>My List</h1>
 
       <div className='searchResult'>
         {watchlist.length ? (

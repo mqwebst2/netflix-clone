@@ -51,7 +51,7 @@ export default function Header() {
   return (
     <header>
       <Link to={'browse'}>
-        <h1>Myflix</h1>
+        <div className={styles.headerTitle}>Myflix</div>
       </Link>
       <nav className={styles.headerNav}>
         <ul className={styles.headerNavMenu}>
