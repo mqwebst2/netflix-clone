@@ -18,25 +18,25 @@ export default function Home() {
     <div id='browse'>
       <h1>Home</h1>
 
-      <section>
+      <div className='home-section'>
         <h2>Popular on Myflix</h2>
-      </section>
-      <section>
+      </div>
+      <div className='home-section'>
         <h2>Continue Watching for GroovyQ😎</h2>
-      </section>
-      <section>
+      </div>
+      <div className='home-section'>
         <h2>My List</h2>
         <div className='movie-row'>{watchlistCards}</div>
-      </section>
-      <section>
+      </div>
+      <div className='home-section'>
         <h2>Top 10 Movies in the U.S. Today</h2>
-      </section>
-      <section>
+      </div>
+      <div className='home-section'>
         <h2>Because you watched [Movie]</h2>
-      </section>
-      <section>
+      </div>
+      <div className='home-section'>
         <h2>Top 10 TV Shows in the U.S. Today</h2>
-      </section>
+      </div>
     </div>
   );
 }

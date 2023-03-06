@@ -24,22 +24,3 @@ export default function App() {
     </div>
   );
 }
-
-// let addToWatchlist = (item) =>
-// setWatchlist((prevWatchlist) => [...prevWatchlist, item]);
-
-// let delFromWatchlist = (item) =>
-// setWatchlist((prevWatchlist) =>
-//   prevWatchlist.filter((movie) => item.imdbID !== movie.imdbID)
-// );
-
-// let checkWatchlist = (item) =>
-// watchlist.find((movie) => item.imdbID === movie.imdbID);
-
-// let handleWatchlist = (movie) => {
-// if (checkWatchlist(movie) === undefined) {
-//   addToWatchlist(movie);
-// } else {
-//   delFromWatchlist(movie);
-// }
-// };
