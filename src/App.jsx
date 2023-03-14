@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className='App'>
       <Header />
-      <div className='main'>
+      <main>
         <Routes>
           <Route path='/' element={<Navigate to='/browse' replace />} />
         </Routes>
@@ -20,7 +20,7 @@ export default function App() {
             watchlist: [watchlist, setWatchlist],
           }}
         />
-      </div>
+      </main>
     </div>
   );
 }

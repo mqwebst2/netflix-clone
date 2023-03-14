@@ -8,8 +8,7 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  width: 240px;
-  height: 140px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 6px;
 }
